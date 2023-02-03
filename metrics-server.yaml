@@ -130,13 +130,21 @@ spec:
       labels:
         k8s-app: metrics-server
     spec:
+      hostAliases:
+        - ip: 172.31.35.107
+          hostnames:
+          - "worker1"
+        - ip: 172.31.46.135
+          hostnames:
+          - "worker2"
       containers:
       - args:
+        - --kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname
+        - --kubelet-insecure-tls
         - --cert-dir=/tmp
         - --secure-port=4443
-        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
         - --kubelet-use-node-status-port
-        - --metric-resolution=15s
+        - --metric-resolution=60s
         image: k8s.gcr.io/metrics-server/metrics-server:v0.6.2
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -173,6 +181,7 @@ spec:
           name: tmp-dir
       nodeSelector:
         kubernetes.io/os: linux
+      hostNetwork: true
       priorityClassName: system-cluster-critical
       serviceAccountName: metrics-server
       volumes:
