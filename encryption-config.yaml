@@ -4,12 +4,9 @@ kind: EncryptionConfiguration
 resources:
   - resources:
       - secrets
-      - configmaps
-    
     providers:
-      - identity: {}
       - secretbox:
           keys:
             - name: key
-              secret: MOvM/bdzZaJcipNJpynNqrrwLctOJ1c/lWxT6MsU3a0=
-
+              secret: MOvM/bdzZaJcipNJpynNqrrwLctOJ1c/lWxT6MsU3a0= # Replace with head -c 32 /dev/urandom | base64
+      - identity: {}
