@@ -1,0 +1,15 @@
+# /etc/kubernetes/enc/enc.yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+      - secrets
+      - configmaps
+    
+    providers:
+      - identity: {}
+      - secretbox:
+          keys:
+            - name: key
+              secret: MOvM/bdzZaJcipNJpynNqrrwLctOJ1c/lWxT6MsU3a0=
+
