@@ -3,10 +3,13 @@ kind: PersistentVolume
 metadata:
   name: database-pv
   namespace: apps
+  labels:
+    app: database
 spec:
   capacity:
     storage: 4Gi
   volumeMode: Filesystem
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
@@ -16,7 +19,7 @@ spec:
     required:
       nodeSelectorTerms:
         - matchExpressions:
-            - key: name
+            - key: kubernetes.io/hostname
               operator: In
               values:
-                - "worker1"
+                - worker1

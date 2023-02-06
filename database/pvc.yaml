@@ -3,7 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: database-pvc
   namespace: apps
+  labels:
+    app: database
 spec:
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
@@ -12,4 +15,4 @@ spec:
       storage: 4Gi
   selector:
     matchExpressions:
-      - {key: name, operator: In, values: [database-pv]}
+      - {key: app, operator: In, values: [database]}
