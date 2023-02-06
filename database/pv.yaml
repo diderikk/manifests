@@ -14,7 +14,7 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   local:
-    path: /mnt/data
+    path: /mnt
   nodeAffinity:
     required:
       nodeSelectorTerms:
