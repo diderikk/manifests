@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chess
+  namespace: apps
+  labels:
+    app: chess
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chess
+  template:
+    metadata:
+      app: chess
+    spec:
+      containers:
+        - name: chess
+          image: diderikk/chess:v1.0.0
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - secretRef:
+                name: chess-secrets
