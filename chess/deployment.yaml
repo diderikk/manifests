@@ -12,7 +12,8 @@ spec:
       app: chess
   template:
     metadata:
-      app: chess
+      labels:
+        app: chess
     spec:
       containers:
         - name: chess
