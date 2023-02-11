@@ -12,7 +12,7 @@ spec:
   storageClassName: standard
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
   local:
     path: /mnt
   nodeAffinity:

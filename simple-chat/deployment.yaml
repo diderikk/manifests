@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-chat
+  namespace: apps
+  labels:
+    app: simple-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-chat
+  template:
+    metadata:
+      labels:
+        app: simple-chat
+    spec:
+      containers:
+        - name: simple-chat
+          image: diderikk/simple-chat:v1.0.0
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - secretRef:
+                name: simple-chat-secrets
+          livenessProbe:
+            httpGet:
+              path: /api/hello/live
+              port: 4000
+            initialDelaySeconds: 30
+            periodSeconds: 3600
+            failureThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /api/hello/ready
+              port: 4000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            failureThreshold: 2
