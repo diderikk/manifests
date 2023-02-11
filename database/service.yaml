@@ -6,8 +6,9 @@ metadata:
   labels:
     app: database
 spec:
-  type: ClusterIP
+  type: ExternalName
   ports:
     - port: 5432
+  externalName: internal.database.prod.dev
   selector:
     app: database
