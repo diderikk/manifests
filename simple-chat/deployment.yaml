@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
         - name: simple-chat-builder
-          image: diderikk/simple-chat-builder:v1.0.0
+          image: diderikk/simple-chat-builder:v1.0.1
           imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
