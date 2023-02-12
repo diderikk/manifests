@@ -19,9 +19,14 @@ metadata:
         proxy_cache_bypass $http_upgrade;
         }
 spec:
+  tls:
+    - hosts:
+      - elixirapi.me
+      secretName: tls-secrets
   ingressClassName: nginx
   rules:
-  - http:
+  - host: elixirapi.me
+    http:
       paths:
       - path: /api/hello
         pathType: Prefix
@@ -30,7 +35,14 @@ spec:
             name: chess-service
             port:
               number: 4000
-      - path: /socket
+      - path: /chess-socket
+        pathType: Prefix
+        backend:
+          service:
+            name: chess-service
+            port:
+              number: 4000
+      - path: /simple-chat-socket
         pathType: Prefix
         backend:
           service:

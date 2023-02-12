@@ -15,9 +15,17 @@ spec:
       labels:
         app: simple-chat
     spec:
+      initContainers:
+        - name: simple-chat-builder
+          image: diderikk/simple-chat-builder:v1.0.0
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: simple-chat-secrets
+          command: ["sh", '-c', 'mix ecto.setup']
       containers:
         - name: simple-chat
-          image: diderikk/simple-chat:v1.0.0
+          image: diderikk/simple-chat:v1.1.1
           imagePullPolicy: IfNotPresent
           resources:
             limits:
