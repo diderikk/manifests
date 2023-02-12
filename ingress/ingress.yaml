@@ -28,13 +28,13 @@ spec:
   - host: elixirapi.me
     http:
       paths:
-      - path: /api/hello
-        pathType: Prefix
-        backend:
-          service:
-            name: chess-service
-            port:
-              number: 4000
+      # - path: /api/hello
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: simple-chat-service
+      #       port:
+      #         number: 4000
       - path: /chess-socket
         pathType: Prefix
         backend:

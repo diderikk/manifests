@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: chess
-          image: diderikk/chess:v1.0.0
+          image: diderikk/chess:v1.0.1
           imagePullPolicy: IfNotPresent
           resources:
             limits:
