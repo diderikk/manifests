@@ -32,20 +32,27 @@ spec:
       #   pathType: Prefix
       #   backend:
       #     service:
-      #       name: simple-chat-service
+      #       name: chess-service
       #       port:
       #         number: 4000
-      - path: /chess-socket
+      - path: /chesssocket
         pathType: Prefix
         backend:
           service:
             name: chess-service
             port:
               number: 4000
-      - path: /simple-chat-socket
+      - path: /simplechatsocket
         pathType: Prefix
         backend:
           service:
-            name: chess-service
+            name: simple-chat-service
+            port:
+              number: 4000
+      - path: /api/simplechat
+        pathType: Prefix
+        backend:
+          service:
+            name: simple-chat-service
             port:
               number: 4000
