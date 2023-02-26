@@ -2,13 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: grafana-agent
-  namespace: apps
+  namespace: grafana
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: grafana-agent-operator
-  namespace: apps
+  namespace: grafana
 ---
 apiVersion: v1
 automountServiceAccountToken: false
@@ -19,14 +19,14 @@ metadata:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.5.0
   name: kube-state-metrics
-  namespace: apps
+  namespace: grafana
 ---
 apiVersion: v1
 data: {}
 kind: Secret
 metadata:
   name: logs-secret
-  namespace: apps
+  namespace: grafana
 stringData:
   password: eyJrIjoiYWI0OGQzMWQ5ZGE5ZGE5OGM5ZjM5ZjlhMDA1ZWRhYWQxYWU4ZTE4YyIsIm4iOiJzdGFjay01NDY3ODYtZWFzeXN0YXJ0LXByb20tcHVibGlzaGVyIiwiaWQiOjgwMzYwOH0=
   username: "396171"
@@ -37,7 +37,7 @@ data: {}
 kind: Secret
 metadata:
   name: metrics-secret
-  namespace: apps
+  namespace: grafana
 stringData:
   password: eyJrIjoiYWI0OGQzMWQ5ZGE5ZGE5OGM5ZjM5ZjlhMDA1ZWRhYWQxYWU4ZTE4YyIsIm4iOiJzdGFjay01NDY3ODYtZWFzeXN0YXJ0LXByb20tcHVibGlzaGVyIiwiaWQiOjgwMzYwOH0=
   username: "794404"
@@ -47,13 +47,16 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: agent-eventhandler
-  namespace: apps
+  namespace: grafana
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
+  selector:
+    matchExpressions:
+      - {key: app, operator: In, values: [grafana]}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -299,7 +302,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: grafana-agent
-  namespace: apps
+  namespace: grafana
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -312,7 +315,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: grafana-agent-operator
-  namespace: apps
+  namespace: grafana
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -329,7 +332,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kube-state-metrics
-  namespace: apps
+  namespace: grafana
 ---
 apiVersion: v1
 kind: Service
@@ -339,7 +342,7 @@ metadata:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.5.0
   name: kube-state-metrics
-  namespace: apps
+  namespace: grafana
 spec:
   clusterIP: None
   ports:
@@ -356,7 +359,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana-agent-operator
-  namespace: apps
+  namespace: grafana
 spec:
   minReadySeconds: 10
   replicas: 1
@@ -385,7 +388,7 @@ metadata:
     app.kubernetes.io/name: kube-state-metrics
     app.kubernetes.io/version: 2.5.0
   name: kube-state-metrics
-  namespace: apps
+  namespace: grafana
 spec:
   replicas: 1
   selector:
@@ -434,7 +437,7 @@ apiVersion: monitoring.grafana.com/v1alpha1
 kind: GrafanaAgent
 metadata:
   name: grafana-agent
-  namespace: apps
+  namespace: grafana
 spec:
   image: grafana/agent:v0.26.1
   integrations:
@@ -460,11 +463,11 @@ metadata:
   labels:
     agent: grafana-agent
   name: agent-eventhandler
-  namespace: apps
+  namespace: grafana
 spec:
   config:
     cache_path: /etc/eventhandler/eventhandler.cache
-    logs_instance: apps/grafana-agent-logs
+    logs_instance: grafana/grafana-agent-logs
   name: eventhandler
   type:
     unique: true
@@ -482,12 +485,12 @@ metadata:
   labels:
     agent: grafana-agent
   name: node-exporter
-  namespace: apps
+  namespace: grafana
 spec:
   config:
     autoscrape:
       enable: true
-      metrics_instance: apps/grafana-agent-metrics
+      metrics_instance: grafana/grafana-agent-metrics
     procfs_path: host/proc
     rootfs_path: /host/root
     sysfs_path: /host/sys
@@ -519,7 +522,7 @@ metadata:
   labels:
     agent: grafana-agent
   name: grafana-agent-logs
-  namespace: apps
+  namespace: grafana
 spec:
   clients:
   - basicAuth:
@@ -543,7 +546,7 @@ metadata:
   labels:
     agent: grafana-agent
   name: grafana-agent-metrics
-  namespace: apps
+  namespace: grafana
 spec:
   remoteWrite:
   - basicAuth:
@@ -565,7 +568,7 @@ metadata:
   labels:
     instance: primary
   name: kubernetes-logs
-  namespace: apps
+  namespace: grafana
 spec:
   namespaceSelector:
     any: true
@@ -604,7 +607,7 @@ metadata:
   labels:
     instance: primary
   name: cadvisor-monitor
-  namespace: apps
+  namespace: grafana
 spec:
   endpoints:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
@@ -639,7 +642,7 @@ metadata:
   labels:
     instance: primary
   name: ksm-monitor
-  namespace: apps
+  namespace: grafana
 spec:
   endpoints:
   - honorLabels: true
@@ -657,7 +660,7 @@ spec:
       targetLabel: job
   namespaceSelector:
     matchNames:
-    - apps
+    - grafana
   selector:
     matchLabels:
       app.kubernetes.io/name: kube-state-metrics
@@ -668,7 +671,7 @@ metadata:
   labels:
     instance: primary
   name: kubelet-monitor
-  namespace: apps
+  namespace: grafana
 spec:
   endpoints:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
