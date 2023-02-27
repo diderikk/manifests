@@ -32,13 +32,6 @@ spec:
             httpGet:
               path: /api/hello/live
               port: 4000
-            initialDelaySeconds: 30
-            periodSeconds: 3600
-            failureThreshold: 1
-          readinessProbe:
-            httpGet:
-              path: /api/hello/ready
-              port: 4000
-            initialDelaySeconds: 10
-            periodSeconds: 30
+            initialDelaySeconds: 20
+            periodSeconds: 1800
             failureThreshold: 2
