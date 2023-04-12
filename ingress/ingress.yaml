@@ -56,3 +56,10 @@ spec:
             name: simple-chat-service
             port:
               number: 4000
+      - path: /portfolio
+        pathType: Prefix
+        backend:
+          service:
+            name: portfolio-service
+            port:
+              number: 3000
