@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: chess-frontend
-          image: diderikk/chess-frontend:v1.1.0
+          image: diderikk/chess-frontend:v1.1.1
           imagePullPolicy: IfNotPresent
           resources:
             limits:
