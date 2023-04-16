@@ -22,19 +22,14 @@ spec:
   tls:
     - hosts:
       - elixirapi.me
-      secretName: tls-secrets
+      - chess.elixirapi.me
+      - chat.elixirapi.me
+      secretName: elixirapi
   ingressClassName: nginx
   rules:
   - host: elixirapi.me
     http:
       paths:
-      # - path: /api/hello
-      #   pathType: Prefix
-      #   backend:
-      #     service:
-      #       name: chess-service
-      #       port:
-      #         number: 4000
       - path: /chesssocket
         pathType: Prefix
         backend:
@@ -70,3 +65,13 @@ spec:
             name: chess-frontend-service
             port:
               number: 8080
+  - host: chess.elixirapi.me
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: chess-frontend-service
+              port:
+                number: 8080
