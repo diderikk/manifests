@@ -58,13 +58,6 @@ spec:
             name: portfolio-service
             port:
               number: 3000
-      - path: /chess
-        pathType: Prefix
-        backend:
-          service:
-            name: chess-frontend-service
-            port:
-              number: 8080
   - host: chess.elixirapi.me
     http:
       paths:

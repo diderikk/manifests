@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-chat-frontend
+  namespace: apps
+  labels:
+    app: simple-chat-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-chat-frontend
+  template:
+    metadata:
+      labels:
+        app: simple-chat-frontend
+    spec:
+      containers:
+        - name: simple-chat-frontend
+          image: diderikk/simple-chat-frontend:v1.0.0
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 3000

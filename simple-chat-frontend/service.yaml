@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-chat-frontend-service
+  namespace: apps
+  labels:
+    app: simple-chat-frontend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+  selector:
+    app: simple-chat-frontend
