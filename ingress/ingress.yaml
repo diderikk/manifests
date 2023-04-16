@@ -68,3 +68,13 @@ spec:
               name: chess-frontend-service
               port:
                 number: 8080
+  - host: chat.elixirapi.me
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: simple-chat-frontend-service
+              port:
+                number: 3000
