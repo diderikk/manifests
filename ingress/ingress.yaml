@@ -58,6 +58,13 @@ spec:
             name: portfolio-service
             port:
               number: 3000
+      - path: /state
+        pathType: Prefix
+        backend:
+          service:
+            name: ttm4115-service
+            port:
+              number: 8000
   - host: chess.elixirapi.me
     http:
       paths:
