@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ttm4115
-          image: diderikk/ttm4115:v2.0.1
+          image: diderikk/ttm4115:v2.1.0
           imagePullPolicy: IfNotPresent
           resources:
             limits:
