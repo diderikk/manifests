@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: portfolio
-          image: diderikk/portfolio:v1.0.5
+          image: diderikk/portfolio:v1.0.6
           imagePullPolicy: IfNotPresent
           resources:
             limits:
