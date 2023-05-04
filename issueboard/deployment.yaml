@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: issueboard
+  namespace: apps
+  labels:
+    app: issueboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: issueboard
+  template:
+    metadata:
+      labels:
+        app: issueboard
+    spec:
+      initContainers:
+        - name: issueboard-init
+          image: diderikk/issueboard:v1.0.0
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: issueboard-secrets
+          command: ["sh", '-c', 'mix ecto.setup']
+      containers:
+        - name: issueboard
+          image: diderikk/issueboard:v1.0.0
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: issueboard-secrets
