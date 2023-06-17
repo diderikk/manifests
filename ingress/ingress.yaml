@@ -24,7 +24,7 @@ spec:
       - elixirapi.me
       - chess.elixirapi.me
       - chat.elixirapi.me
-      - ttm4115.elixirapi.me
+      - issueboard.elixirapi.me
       secretName: elixirapi
   ingressClassName: nginx
   rules:
@@ -79,13 +79,20 @@ spec:
               name: simple-chat-frontend-service
               port:
                 number: 3000
-  - host: ttm4115.elixirapi.me
+  - host: issueboard.elixirapi.me
     http:
       paths:
-        - path: /
+        - path: /graphql/
           pathType: Prefix
           backend:
             service:
-              name: ttm4115-service
+              name: issueboard-service
               port:
-                number: 8000
+                number: 8080
+        - path: /access_token/
+          pathType: Exact
+          backend:
+            service:
+              name: issueboard-service
+              port:
+                number: 8080
