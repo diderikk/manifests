@@ -40,3 +40,12 @@ spec:
           envFrom:
             - secretRef:
                 name: issueboard-secrets
+        - name: issueboard-frontend
+          image: diderikk/issueboard-frontend:v1.0.0
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 3000
