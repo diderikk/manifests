@@ -9,6 +9,8 @@ spec:
   type: ClusterIP
   ports:
     - port: 8080
+      name: issueboard-backend
     - port: 3000
+      name: issueboard-frontend
   selector:
     app: issueboard

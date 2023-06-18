@@ -96,3 +96,10 @@ spec:
               name: issueboard-service
               port:
                 number: 8080
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: issueboard-service
+              port:
+                number: 3000
