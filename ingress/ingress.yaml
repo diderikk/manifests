@@ -83,16 +83,16 @@ spec:
     http:
       paths:
         - path: /graphql/
-          pathType: Prefix
+          pathType: Exact
           backend:
             service:
               name: issueboard-service
               port:
-                name: issueboard-backend
+                name: backend-svc
         - path: /access_token/
           pathType: Exact
           backend:
             service:
               name: issueboard-service
               port:
-                name: issueboard-backend
+                name: backend-svc
