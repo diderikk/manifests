@@ -17,7 +17,7 @@ spec:
     spec:
       initContainers:
         - name: issueboard-init
-          image: diderikk/issueboard:v1.1.2
+          image: diderikk/issueboard:v1.1.1
           imagePullPolicy: IfNotPresent
           envFrom:
             - secretRef:
@@ -29,7 +29,7 @@ spec:
               cpu: "250m"
       containers:
         - name: issueboard
-          image: diderikk/issueboard:v1.1.2
+          image: diderikk/issueboard:v1.1.1
           imagePullPolicy: IfNotPresent
           resources:
             limits:

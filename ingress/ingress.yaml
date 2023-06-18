@@ -82,17 +82,17 @@ spec:
   - host: issueboard.elixirapi.me
     http:
       paths:
-        - path: /graphql/
-          pathType: Exact
+        - path: /
+          pathType: Prefix
           backend:
             service:
               name: issueboard-service
               port:
-                name: backend-svc
-        - path: /access_token/
-          pathType: Exact
-          backend:
-            service:
-              name: issueboard-service
-              port:
-                name: backend-svc
+                number: 8080
+        # - path: /access_token/
+        #   pathType: Exact
+        #   backend:
+        #     service:
+        #       name: issueboard-service
+        #       port:
+        #         name: backend-svc
