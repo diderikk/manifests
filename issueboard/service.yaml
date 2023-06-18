@@ -10,5 +10,7 @@ spec:
   ports:
     - port: 8080
       name: backend-svc
+    - port: 3000
+      name: frontend-svc
   selector:
     app: issueboard
