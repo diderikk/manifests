@@ -90,7 +90,7 @@ spec:
               port:
                 number: 8080
         - path: /access_token
-          pathType: Exact
+          pathType: Prefix
           backend:
             service:
               name: issueboard-service

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: livebook-pvc
+  namespace: apps
+  labels:
+    app: livebook
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 4Gi
+  selector:
+    matchExpressions:
+      - {key: app, operator: In, values: [livebook]}

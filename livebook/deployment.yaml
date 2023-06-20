@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: livebook
+  namespace: apps
+  labels:
+    app: livebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: livebook
+  template:
+    metadata:
+      labels:
+        app: livebook
+    spec:
+      containers:
+        - name: livebook
+          image: ghcr.io/livebook-dev/livebook
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: livebook-secrets
+          volumeMounts:
+            - mountPath: /
+              name: livebook-home
+      volumes:
+        - name: livebook-home
+          persistentVolumeClaim:
+            claimName: livebook-pvc
