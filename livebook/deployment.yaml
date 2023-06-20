@@ -29,7 +29,7 @@ spec:
             - secretRef:
                 name: livebook-secrets
           volumeMounts:
-            - mountPath: /
+            - mountPath: ~/
               name: livebook-home
       volumes:
         - name: livebook-home
