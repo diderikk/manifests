@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: livebook
-          image: ghcr.io/livebook-dev/livebook
+          image: ghcr.io/livebook-dev/livebook:0.10.0@sha256:a601b45708341184060ed469baba01837147e282c532d47f4e0514aaff405dc2
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -29,7 +29,7 @@ spec:
             - secretRef:
                 name: livebook-secrets
           volumeMounts:
-            - mountPath: ~/
+            - mountPath: /home/livebook
               name: livebook-home
       volumes:
         - name: livebook-home
