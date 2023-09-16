@@ -25,7 +25,7 @@ spec:
           command: ["sh", '-c', 'mix ecto.setup']
       containers:
         - name: simple-chat
-          image: diderikk/simple-chat:v1.2.7@sha256:75e617520360c7474fdff02011430e49af24d8748826a6dc56ee9fcb56d97a17
+          image: diderikk/simple-chat:v1.2.7@sha256:0a847badd88cc70cca3e3eb07d52b8f0c4e469a30cdacd162fd7001dd5087e1a
           imagePullPolicy: IfNotPresent
           resources:
             limits:
