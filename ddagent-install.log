@@ -1,127 +1,0 @@
-[34m
-* Datadog Agent 7 install script v1.21.0
-[0m
-[34m
-* Installing apt-transport-https, curl and gnupg
-[0m
-Funnet:1 http://no.archive.ubuntu.com/ubuntu jammy InRelease
-Hent:2 http://no.archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]
-Hent:3 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
-Hent:4 https://repo.protonvpn.com/debian stable InRelease [2 519 B]
-Hent:5 http://no.archive.ubuntu.com/ubuntu jammy-backports InRelease [109 kB]
-Funnet:6 https://ppa.launchpadcontent.net/mosquitto-dev/mosquitto-ppa/ubuntu jammy InRelease
-Hent:7 http://no.archive.ubuntu.com/ubuntu jammy-updates/main amd64 DEP-11 Metadata [101 kB]
-Hent:8 http://no.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 DEP-11 Metadata [289 kB]
-Hent:9 http://no.archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 DEP-11 Metadata [940 B]
-Hent:10 http://no.archive.ubuntu.com/ubuntu jammy-backports/main amd64 DEP-11 Metadata [4 908 B]
-Hent:11 http://no.archive.ubuntu.com/ubuntu jammy-backports/universe i386 Packages [13,4 kB]
-Hent:12 http://no.archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [24,3 kB]
-Hent:13 http://no.archive.ubuntu.com/ubuntu jammy-backports/universe amd64 DEP-11 Metadata [17,7 kB]
-Hent:14 http://no.archive.ubuntu.com/ubuntu jammy-backports/universe DEP-11 64x64 Icons [25,6 kB]
-Hent:15 http://no.archive.ubuntu.com/ubuntu jammy-backports/universe amd64 c-n-f Metadata [644 B]
-Hent:16 http://security.ubuntu.com/ubuntu jammy-security/main amd64 DEP-11 Metadata [42,9 kB]
-Hent:17 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 DEP-11 Metadata [40,0 kB]
-Funnet:18 https://packagecloud.io/slacktechnologies/slack/debian jessie InRelease
-Hentet 901 kB på 2s (466 kB/s)
-Leser pakkelister...
-W: https://packagecloud.io/slacktechnologies/slack/debian/dists/jessie/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
-Leser pakkelister...
-Skaper oversikt over avhengighetsforhold...
-Leser tilstandsinformasjon...
-Du har allerede nyeste versjon av curl (7.81.0-1ubuntu1.13).
-Du har allerede nyeste versjon av gnupg (2.2.27-3ubuntu2.1).
-Du har allerede nyeste versjon av apt-transport-https (2.4.10).
-Følgende pakker ble automatisk installert og er ikke lenger påkrevet:
-  libboost-filesystem1.71.0 libboost-serialization1.71.0 libboost-system1.71.0
-  libncurses5 libstdc++-9-dev libtinfo5
-Bruk «sudo apt autoremove» for å fjerne dem.
-0 oppgraderte, 0 nylig installerte, 0 å fjerne og 2 ikke oppgradert.
-[34m
-* Installing APT package sources for Datadog
-[0m
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  6226  100  6226    0     0  27949      0 --:--:-- --:--:-- --:--:-- 27919
-gpg: nøkkel 32637D44F14F620E: offentlig nøkkel «Datadog, Inc. Master key (2020-09-08) <package+masterkey@datadoghq.com>» importert
-gpg: Totalt antall behandlet: 1
-gpg:               importert: 1
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1713  100  1713    0     0  10349      0 --:--:-- --:--:-- --:--:-- 10381
-gpg: nøkkel E6266D4AC0962C7D: offentlig nøkkel «Datadog, Inc. APT key (2023-04-20) (APT key) <package+aptkey@datadoghq.com>» importert
-gpg: Totalt antall behandlet: 1
-gpg:               importert: 1
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  6226  100  6226    0     0  42756      0 --:--:-- --:--:-- --:--:-- 42937
-gpg: nøkkel 32637D44F14F620E: «Datadog, Inc. Master key (2020-09-08) <package+masterkey@datadoghq.com>» ikke endret
-gpg: Totalt antall behandlet: 1
-gpg:              uendret: 1
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  9001  100  9001    0     0  62621      0 --:--:-- --:--:-- --:--:-- 62944
-gpg: nøkkel D3A80E30382E94DE: offentlig nøkkel «Datadog, Inc <package@datadoghq.com>» importert
-gpg: Totalt antall behandlet: 1
-gpg:               importert: 1
-Ign:1 https://apt.datadoghq.com stable InRelease
-Hent:2 https://apt.datadoghq.com stable Release [14,3 kB]
-Hent:3 https://apt.datadoghq.com stable Release.gpg [801 B]
-Hent:4 https://apt.datadoghq.com stable/7 amd64 Packages [44,4 kB]
-Hent:5 https://apt.datadoghq.com stable/7 all Packages [1 073 B]
-Hent:6 https://apt.datadoghq.com stable/7 i386 Packages [1 073 B]
-Hentet 61,7 kB på 0s (144 kB/s)
-Leser pakkelister...
-  [33mInstalling package(s): datadog-agent datadog-signing-keys
-[0m
-Leser pakkelister...
-Skaper oversikt over avhengighetsforhold...
-Leser tilstandsinformasjon...
-Følgende pakker ble automatisk installert og er ikke lenger påkrevet:
-  libboost-filesystem1.71.0 libboost-serialization1.71.0 libboost-system1.71.0
-  libncurses5 libstdc++-9-dev libtinfo5
-Bruk «sudo apt autoremove» for å fjerne dem.
-Følgende NYE pakker vil bli installert:
-  datadog-agent datadog-signing-keys
-0 oppgraderte, 2 nylig installerte, 0 å fjerne og 2 ikke oppgradert.
-Må hente 396 MB med arkiver.
-Etter denne operasjonen vil 1 256 MB ekstra diskplass bli brukt.
-Hent:1 https://apt.datadoghq.com stable/7 amd64 datadog-agent amd64 1:7.47.0-1 [396 MB]
-Hent:2 https://apt.datadoghq.com stable/7 amd64 datadog-signing-keys all 1:1.3.1-1 [22,3 kB]
-Hentet 396 MB på 31s (12,8 MB/s)
-Velger den tidligere bortvalgte pakka «datadog-agent».
-(Leser database ... (Leser database ... 5%(Leser database ... 10%(Leser database ... 15%(Leser database ... 20%(Leser database ... 25%(Leser database ... 30%(Leser database ... 35%(Leser database ... 40%(Leser database ... 45%(Leser database ... 50%(Leser database ... 55%(Leser database ... 60%(Leser database ... 65%(Leser database ... 70%(Leser database ... 75%(Leser database ... 80%(Leser database ... 85%(Leser database ... 90%(Leser database ... 95%(Leser database ... 100%(Leser database ... 706252 filer og kataloger er for øyeblikket installerte.)
-Preparing to unpack .../datadog-agent_1%3a7.47.0-1_amd64.deb ...
-Unpacking datadog-agent (1:7.47.0-1) ...
-Velger den tidligere bortvalgte pakka «datadog-signing-keys».
-Preparing to unpack .../datadog-signing-keys_1%3a1.3.1-1_all.deb ...
-Unpacking datadog-signing-keys (1:1.3.1-1) ...
-Setter opp datadog-agent (1:7.47.0-1) ...
-Creating dd-agent group
-Creating dd-agent user
-Enabling service datadog-agent
-Created symlink /etc/systemd/system/multi-user.target.wants/datadog-agent.service → /lib/systemd/system/datadog-agent.service.
-Created symlink /etc/systemd/system/multi-user.target.wants/datadog-agent-process.service → /lib/systemd/system/datadog-agent-process.service.
-Created symlink /etc/systemd/system/multi-user.target.wants/datadog-agent-trace.service → /lib/systemd/system/datadog-agent-trace.service.
-Created symlink /etc/systemd/system/multi-user.target.wants/datadog-agent-security.service → /lib/systemd/system/datadog-agent-security.service.
-No datadog.yaml file detected, not starting the agent
-Setter opp datadog-signing-keys (1:1.3.1-1) ...
-W: --force-yes er utdatert, bruk en av valgene som starter med --allow istedet.
-[34m
-* Adding your API key to the Datadog Agent configuration: /etc/datadog-agent/datadog.yaml
-[0m
-[34m
-* Setting SITE in the Datadog Agent configuration: /etc/datadog-agent/datadog.yaml
-[0m
-/usr/bin/systemctl
-[34m* Starting the Datadog Agent...
-[0m
-[32m  Your Datadog Agent is running and functioning properly.
-[0m[32m  It will continue to run in the background and submit metrics to Datadog.
-[0m[32m  If you ever want to stop the Datadog Agent, run:
-
-      sudo systemctl stop datadog-agent
-
-  And to run it again run:
-
-      sudo systemctl start datadog-agent[0m
-
