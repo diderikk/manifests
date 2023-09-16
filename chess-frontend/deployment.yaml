@@ -17,11 +17,11 @@ spec:
     spec:
       containers:
         - name: chess-frontend
-          image: diderikk/chess-frontend:v1.2.3
+          image: diderikk/chess-frontend:v1.2.4@sha256:5738e274c75461235341342c303c27ea934420b8d691d180acfc3d23e1c07990
           imagePullPolicy: IfNotPresent
           resources:
             limits:
               memory: "256Mi"
-              cpu: "250m"
+              cpu: "100m"
           ports:
             - containerPort: 8080
