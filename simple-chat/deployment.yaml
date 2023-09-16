@@ -25,12 +25,12 @@ spec:
           command: ["sh", '-c', 'mix ecto.setup']
       containers:
         - name: simple-chat
-          image: diderikk/simple-chat:v1.2.3
+          image: diderikk/simple-chat:v1.2.4@sha256:d82e193878aff3a3be4d7f536fc25129f12c130c6b960dff13f75b78d97d4e73
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "256Mi"
+              cpu: "100m"
           ports:
             - containerPort: 4000
           envFrom:
