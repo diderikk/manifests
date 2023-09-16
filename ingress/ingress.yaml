@@ -59,13 +59,6 @@ spec:
   - host: chat.elixirapi.me
     http:
       paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: simple-chat-frontend-service
-              port:
-                number: 3000
         - path: /api
           pathType: Prefix
           backend:
@@ -80,6 +73,13 @@ spec:
               name: simple-chat-service
               port:
                 number: 4000
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: simple-chat-frontend-service
+              port:
+                number: 3000
   - host: issueboard.elixirapi.me
     http:
       paths:
