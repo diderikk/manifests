@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: simple-chat-frontend
-          image: diderikk/simple-chat-frontend:v1.0.0
+          image: diderikk/simple-chat-frontend:v1.1.0@sha256:3e3449942eb3fe177513904a570e296c6f9d4b385181c6037f597e4dfc635154
           imagePullPolicy: IfNotPresent
           resources:
             limits:
