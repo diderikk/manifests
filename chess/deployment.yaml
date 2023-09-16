@@ -17,12 +17,12 @@ spec:
     spec:
       containers:
         - name: chess
-          image: diderikk/chess:v1.1.1
+          image: diderikk/chess:v1.2.0@sha256:3fcd49fef8bedca5da9ae05c0f5cf25cb7a1fc45aaee015a9e376ccf4c042b6c
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "256Mi"
+              cpu: "100m"
           ports:
             - containerPort: 4000
           envFrom:

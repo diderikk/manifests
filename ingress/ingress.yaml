@@ -32,13 +32,6 @@ spec:
   - host: elixirapi.me
     http:
       paths:
-      - path: /chesssocket
-        pathType: Prefix
-        backend:
-          service:
-            name: chess-service
-            port:
-              number: 4000
       - path: /portfolio
         pathType: Prefix
         backend:
@@ -49,6 +42,13 @@ spec:
   - host: chess.elixirapi.me
     http:
       paths:
+        - path: /socket
+          pathType: Prefix
+          backend:
+            service:
+              name: chess-service
+              port:
+                number: 4000
         - path: /
           pathType: Prefix
           backend:
