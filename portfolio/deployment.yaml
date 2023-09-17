@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: portfolio
-          image: diderikk/portfolio:v1.2.4@sha256:6d5309c647e0faa400df3264e3c85744462dbdbf05af030dde1d2664ae80ca35
+          image: diderikk/portfolio:v1.2.5@sha256:b9ee001c34752c9dc0d7c90a40526173a27305ceb940bcd3bf4c0a052d1ab676
           imagePullPolicy: IfNotPresent
           resources:
             limits:
