@@ -34,7 +34,7 @@ spec:
   - host: elixirapi.me
     http:
       paths:
-      - path: /portfolio
+      - path: /
         pathType: Prefix
         backend:
           service:
