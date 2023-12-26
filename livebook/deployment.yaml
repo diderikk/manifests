@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: livebook
-          image: ghcr.io/livebook-dev/livebook:0.10.0@sha256:a601b45708341184060ed469baba01837147e282c532d47f4e0514aaff405dc2
+          image: ghcr.io/livebook-dev/livebook:0.12.1
           imagePullPolicy: IfNotPresent
           resources:
             limits:
