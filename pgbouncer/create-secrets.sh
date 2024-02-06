@@ -8,4 +8,4 @@ APP_NAME="$DEPLOYMENT_NAME"
 SECRET_NAME="$DEPLOYMENT_NAME-config"
 
 cd `dirname $0`
-kubectl create secret generic "$SECRET_NAME" --namespace="$KUBE_NAMESPACE" --from-file=pgbouncer.ini --from-file=userlist.txt -o yaml --dry-run=client | tee "$SECRET_NAME.yaml"
+kubectl create secret generic "$SECRET_NAME" --namespace="$KUBE_NAMESPACE" --from-file=pgbouncer.ini --from-file=userlist.txt -o yaml --dry-run=client | tee "secrets.yaml"
