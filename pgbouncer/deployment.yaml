@@ -1,0 +1,52 @@
+# https://github.com/edoburu/docker-pgbouncer/blob/master/examples/kubernetes/multiuser/deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgbouncer
+  namespace: database
+  labels:
+    app: pgbouncer
+spec:
+  revisionHistoryLimit: 10  # removes old replicasets for deployment rollbacks
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0  # Avoid Terminating and ContainerCreating at the same time
+  selector:
+    matchLabels:
+      app: pgbouncer
+  template:
+    metadata:
+      labels:
+        app: pgbouncer
+    spec:
+      containers:
+        - name: pgbouncer
+          image: edoburu/pgbouncer:1.21.0-p2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 6432
+          volumeMounts:
+            - name: configfiles
+              mountPath: "/etc/pgbouncer"
+              readOnly: true  # writes update the secret!
+          livenessProbe:
+            tcpSocket:
+              port: 6432
+            periodSeconds: 60
+          lifecycle:
+            preStop:
+              exec:
+                # Allow existing queries clients to complete within 120 seconds
+                command: ["/bin/sh", "-c", "killall -INT pgbouncer && sleep 120"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ['all']
+          resources:
+            limits:
+              cpu: "500m"
+              memory: 512Mi
+      volumes:
+        - name: configfiles
+          secret:
+            secretName: pgbouncer-config

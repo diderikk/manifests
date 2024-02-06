@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: database-service
-  namespace: apps
+  namespace: database
   labels:
     app: database
 spec:
