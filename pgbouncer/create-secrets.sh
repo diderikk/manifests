@@ -1,6 +1,5 @@
 #!/bin/sh
 # https://github.com/edoburu/docker-pgbouncer/blob/master/examples/kubernetes/multiuser/create-secrets
-# 7lxUVkiLd64CAM2360vNBTHWbtwAC6uDgSKwxLtL+Qc=
 
 KUBE_NAMESPACE="database"
 DEPLOYMENT_NAME="pgbouncer"
