@@ -7,6 +7,7 @@ metadata:
     app: simple-chat-frontend
 spec:
   type: ClusterIP
+  sessionAffinity: ClientIP
   ports:
     - port: 3000
   selector:

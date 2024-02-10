@@ -6,6 +6,7 @@ metadata:
   namespace: database
   labels:
     app: pgbouncer
+    rel: stable
 spec:
   revisionHistoryLimit: 10  # removes old replicasets for deployment rollbacks
   strategy:
@@ -18,6 +19,7 @@ spec:
     metadata:
       labels:
         app: pgbouncer
+        rel: stable
     spec:
       containers:
         - name: pgbouncer

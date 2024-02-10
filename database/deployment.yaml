@@ -5,6 +5,7 @@ metadata:
   namespace: database
   labels:
     app: database
+    rel: stable
 spec:
   replicas: 1
   selector:
@@ -14,6 +15,7 @@ spec:
     metadata:
       labels:
         app: database
+        rel: stable
     spec:
       containers:
         - name: database
