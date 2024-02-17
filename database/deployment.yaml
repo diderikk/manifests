@@ -27,10 +27,8 @@ spec:
           image: postgres:15.1 
           imagePullPolicy: IfNotPresent
           securityContext:
-            privileged: false
-            capabilities:
-              drop: ['all']
-            allowPrivilegeEscalation: false
+            runAsGroup: 11112
+            runAsUser: 11111
           resources:
             limits:
               memory: "128Mi"
