@@ -18,14 +18,29 @@ spec:
         rel: stable
     spec:
       serviceAccountName: database-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       containers:
         - name: database
           image: postgres:15.1 
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
           resources:
             limits:
               memory: "128Mi"
               cpu: "250m"
+            requests:
+              memory: "64Mi"
+              cpu: "20m"
           ports:
             - containerPort: 5432
           envFrom:

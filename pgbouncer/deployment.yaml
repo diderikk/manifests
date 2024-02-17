@@ -22,10 +22,29 @@ spec:
         rel: stable
     spec:
       serviceAccountName: pgbouncer-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       containers:
         - name: pgbouncer
           image: edoburu/pgbouncer:1.21.0-p2
           imagePullPolicy: Always
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
+          resources:
+            limits:
+              cpu: "500m"
+              memory: 512Mi
+            requests:
+              memory: "16Mi"
+              cpu: "20m"
           ports:
             - containerPort: 6432
           volumeMounts:
@@ -41,14 +60,6 @@ spec:
               exec:
                 # Allow existing queries clients to complete within 120 seconds
                 command: ["/bin/sh", "-c", "killall -INT pgbouncer && sleep 120"]
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop: ['all']
-          resources:
-            limits:
-              cpu: "500m"
-              memory: 512Mi
       volumes:
         - name: configfiles
           secret:

@@ -18,14 +18,28 @@ spec:
         rel: stable
     spec:
       serviceAccountName: portfolio-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       containers:
         - name: portfolio
           image: diderikk/portfolio:v1.2.8@sha256:3abbdb0590ac525429f672a159fda7ab9c5498458af60e5485132b2196e4841d
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
           resources:
             limits:
-              memory: "256Mi"
-              cpu: "250m"
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "32Mi"
+              cpu: "20mi"
           ports:
             - containerPort: 3000
           envFrom:

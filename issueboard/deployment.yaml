@@ -18,10 +18,22 @@ spec:
         rel: stable
     spec:
       serviceAccountName: issueboard-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       initContainers:
         - name: issueboard-init
           image: diderikk/issueboard:v1.1.1
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
           envFrom:
             - secretRef:
                 name: issueboard-secrets
@@ -34,10 +46,21 @@ spec:
         - name: issueboard
           image: diderikk/issueboard:v1.2.0@sha256:8e4a753098a964ccc5c2eb54db8baaad221c6e46d31db09111b4cbdd0937ce53
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "250m"
+              memory: "256Mi"
+              cpu: "100m"
+            requests:
+              memory: "128Mi"
+              cpu: "20m"
           ports:
             - containerPort: 8080
           envFrom:
@@ -46,9 +69,20 @@ spec:
         - name: issueboard-frontend
           image: diderikk/issueboard-frontend:v1.0.1@sha256:b22118e1c2c10d50e97b470296ab16ceff1ffeda161c586f9ccc5c221c5d1694
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
           resources:
             limits:
               memory: "128Mi"
-              cpu: "250m"
+              cpu: "100m"
+            requests:
+              memory: "64Mi"
+              cpu: "20m"
           ports:
             - containerPort: 3000

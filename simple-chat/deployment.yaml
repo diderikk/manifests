@@ -18,14 +18,29 @@ spec:
         rel: stable
     spec:
       serviceAccountName: simple-chat-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       containers:
         - name: simple-chat
           image: diderikk/simple-chat:v1.3.1@sha256:4fc5d8fcdbdcb14e04871fd1e7fc83d67c1ba53f626674b2fd90153d92a05a8d
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
           resources:
             limits:
-              memory: "256Mi"
+              memory: "128Mi"
               cpu: "100m"
+            requests:
+              memory: "128Mi"
+              cpu: "20m"
           ports:
             - containerPort: 4000
           envFrom:

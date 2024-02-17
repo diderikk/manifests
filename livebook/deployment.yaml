@@ -18,14 +18,29 @@ spec:
         rel: stable
     spec:
       serviceAccountName: livebook-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       containers:
         - name: livebook
           image: ghcr.io/livebook-dev/livebook:0.11.4
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "500m"
+              memory: "128Mi"
+              cpu: "50m"
+            requests:
+              memory: "64Mi"
+              cpu: "20m"
           ports:
             - containerPort: 8080
           envFrom:

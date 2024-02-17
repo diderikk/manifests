@@ -18,13 +18,28 @@ spec:
         rel: stable
     spec:
       serviceAccountName: simple-chat-frontend-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       containers:
         - name: simple-chat-frontend
           image: diderikk/simple-chat-frontend:v1.2.0@sha256:b5e9d20075a8fa48645ab58e36f3e2b979645dd918fe616f15888a9e0159edb5
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
           resources:
             limits:
               memory: "256Mi"
               cpu: "250m"
+            requests:
+              memory: "32Mi"
+              cpu: "20m"
           ports:
             - containerPort: 3000
