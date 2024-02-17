@@ -22,6 +22,8 @@ spec:
       hostPID: false
       hostIPC: false
       hostNetwork: false
+      securityContext:
+        fsGroup: 11112
       initContainers:
         - name: issueboard-init
           image: diderikk/issueboard:v1.1.1
@@ -73,7 +75,6 @@ spec:
             privileged: false
             runAsNonRoot: true
             runAsGroup: 11112
-            fsGroup: 11112
             runAsUser: 11111
             capabilities:
               drop: ['all']
