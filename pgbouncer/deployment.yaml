@@ -21,6 +21,7 @@ spec:
         app: pgbouncer
         rel: stable
     spec:
+      serviceAccountName: pgbouncer-sa
       containers:
         - name: pgbouncer
           image: edoburu/pgbouncer:1.21.0-p2

@@ -17,6 +17,7 @@ spec:
         app: issueboard
         rel: stable
     spec:
+      serviceAccountName: issueboard-sa
       initContainers:
         - name: issueboard-init
           image: diderikk/issueboard:v1.1.1

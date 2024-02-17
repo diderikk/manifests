@@ -17,6 +17,7 @@ spec:
         app: livebook
         rel: stable
     spec:
+      serviceAccountName: livebook-sa
       containers:
         - name: livebook
           image: ghcr.io/livebook-dev/livebook:0.11.4

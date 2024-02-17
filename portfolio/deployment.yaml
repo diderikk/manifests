@@ -17,6 +17,7 @@ spec:
         app: portfolio
         rel: stable
     spec:
+      serviceAccountName: portfolio-sa
       containers:
         - name: portfolio
           image: diderikk/portfolio:v1.2.8@sha256:3abbdb0590ac525429f672a159fda7ab9c5498458af60e5485132b2196e4841d

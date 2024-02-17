@@ -17,6 +17,7 @@ spec:
         app: database
         rel: stable
     spec:
+      serviceAccountName: database-sa
       containers:
         - name: database
           image: postgres:15.1 

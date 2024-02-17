@@ -17,6 +17,7 @@ spec:
         app: chess-frontend
         rel: stable
     spec:
+      serviceAccountName: chess-frontend-sa
       containers:
         - name: chess-frontend
           image: diderikk/chess-frontend:v1.2.4@sha256:5738e274c75461235341342c303c27ea934420b8d691d180acfc3d23e1c07990

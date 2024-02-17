@@ -17,6 +17,7 @@ spec:
         app: simple-chat
         rel: stable
     spec:
+      serviceAccountName: simple-chat-sa
       containers:
         - name: simple-chat
           image: diderikk/simple-chat:v1.3.1@sha256:4fc5d8fcdbdcb14e04871fd1e7fc83d67c1ba53f626674b2fd90153d92a05a8d

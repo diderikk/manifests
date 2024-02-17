@@ -23,15 +23,15 @@ metadata:
 spec:
   tls:
     - hosts:
-      - elixirapi.me
-      - chess.elixirapi.me
-      - chat.elixirapi.me
-      - issueboard.elixirapi.me
-      - livebook.elixirapi.me
-      secretName: elixirapi
+      - diderikk.com
+      - chess.diderikk.com
+      - chat.diderikk.com
+      - issueboard.diderikk.com
+      - livebook.diderikk.com
+      secretName: diderikk-tls-secret
   ingressClassName: nginx
   rules:
-  - host: elixirapi.me
+  - host: diderikk.com
     http:
       paths:
       - path: /
@@ -41,7 +41,7 @@ spec:
             name: portfolio-service
             port:
               number: 3000
-  - host: chess.elixirapi.me
+  - host: chess.diderikk.com
     http:
       paths:
         - path: /socket
@@ -58,7 +58,7 @@ spec:
               name: chess-frontend-service
               port:
                 number: 8080
-  - host: chat.elixirapi.me
+  - host: chat.diderikk.com
     http:
       paths:
         - path: /api
@@ -82,7 +82,7 @@ spec:
               name: simple-chat-frontend-service
               port:
                 number: 3000
-  - host: issueboard.elixirapi.me
+  - host: issueboard.diderikk.com
     http:
       paths:
         - path: /graphql
@@ -106,7 +106,7 @@ spec:
               name: issueboard-service
               port:
                 number: 3000
-  - host: livebook.elixirapi.me
+  - host: livebook.diderikk.com
     http:
       paths:
         - path: /

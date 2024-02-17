@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: database-sa
+  namespace: database
+  annotations:
+    kubernetes.io/enforce-mountable-secrets: "true"
+secrets: 
+  - name: database-secrets
