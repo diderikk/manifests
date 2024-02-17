@@ -32,9 +32,6 @@ spec:
           imagePullPolicy: Always
           securityContext:
             privileged: false
-            runAsNonRoot: true
-            runAsGroup: 11112
-            runAsUser: 11111
             capabilities:
               drop: ['all']
             allowPrivilegeEscalation: false
