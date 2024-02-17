@@ -6,8 +6,6 @@ metadata:
   labels:
     app: portfolio
     rel: stable
-  annotations:
-    container.apparmor.security.beta.kubernetes.io/portfolio: localhost/deny-write
 spec:
   replicas: 1
   selector:
@@ -18,6 +16,8 @@ spec:
       labels:
         app: portfolio
         rel: stable
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/portfolio: localhost/deny-write
     spec:
       serviceAccountName: portfolio-sa
       containers:
