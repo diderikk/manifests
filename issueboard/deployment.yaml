@@ -44,7 +44,7 @@ spec:
               cpu: "250m"
       containers:
         - name: issueboard
-          image: diderikk/issueboard:v1.3.0@sha256:8e4a753098a964ccc5c2eb54db8baaad221c6e46d31db09111b4cbdd0937ce53
+          image: diderikk/issueboard:v1.2.0@sha256:8e4a753098a964ccc5c2eb54db8baaad221c6e46d31db09111b4cbdd0937ce53
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -59,7 +59,7 @@ spec:
             - secretRef:
                 name: issueboard-secrets
         - name: issueboard-frontend
-          image: diderikk/issueboard-frontend:v1.0.1@sha256:ebf0139d08dc18c483122a6c2fba61d9c51d3d1ddc5e4e13197b36d2d9981e60
+          image: diderikk/issueboard-frontend:v1.0.1@sha256:b22118e1c2c10d50e97b470296ab16ceff1ffeda161c586f9ccc5c221c5d1694
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
