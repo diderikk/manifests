@@ -73,6 +73,7 @@ spec:
             privileged: false
             runAsNonRoot: true
             runAsGroup: 11112
+            fsGroup: 11112
             runAsUser: 11111
             capabilities:
               drop: ['all']

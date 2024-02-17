@@ -38,8 +38,8 @@ spec:
               memory: "128Mi"
               cpu: "100m"
             requests:
-              memory: "32Mi"
-              cpu: "20mi"
+              memory: "64Mi"
+              cpu: "20m"
           ports:
             - containerPort: 3000
           envFrom:
