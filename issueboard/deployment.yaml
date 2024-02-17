@@ -44,7 +44,7 @@ spec:
               cpu: "250m"
       containers:
         - name: issueboard
-          image: diderikk/issueboard:v1.2.0@sha256:8e4a753098a964ccc5c2eb54db8baaad221c6e46d31db09111b4cbdd0937ce53
+          image: diderikk/issueboard:v1.2.1@sha256:ec4d77b3a994f42d35f002dfd68ff7c96dd1df2e1c0dcaf486ee6de745530b44
           imagePullPolicy: IfNotPresent
           resources:
             limits:
