@@ -24,14 +24,14 @@ spec:
       hostNetwork: false
       containers:
         - name: chess
-          image: diderikk/chess:v1.2.0@sha256:3fcd49fef8bedca5da9ae05c0f5cf25cb7a1fc45aaee015a9e376ccf4c042b6c
+          image: diderikk/chess:v1.2.1@sha256:d7596cc6ffa57d23bf6fda617e28f421955353bf84055e98d407b3ad2fb64fe1
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
             runAsNonRoot: true
             runAsGroup: 11112
             runAsUser: 11111
-            capabilities: 
+            capabilities:
               drop: ['all']
             allowPrivilegeEscalation: false
           resources:
