@@ -18,14 +18,29 @@ spec:
         rel: stable
     spec:
       serviceAccountName: chess-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
       containers:
         - name: chess
           image: diderikk/chess:v1.2.0@sha256:3fcd49fef8bedca5da9ae05c0f5cf25cb7a1fc45aaee015a9e376ccf4c042b6c
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities: 
+              drop: ['all']
+            allowPrivilegeEscalation: false
           resources:
             limits:
               memory: "256Mi"
               cpu: "100m"
+            requests:
+              memory: "128Mi"
+              cpu: "20m"
           ports:
             - containerPort: 4000
           envFrom:
