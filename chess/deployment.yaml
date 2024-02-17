@@ -6,6 +6,8 @@ metadata:
   labels:
     app: chess
     rel: stable
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/chess: localhost/deny-write
 spec:
   replicas: 1
   selector:

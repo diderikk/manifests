@@ -7,6 +7,8 @@ metadata:
   labels:
     app: pgbouncer
     rel: stable
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/pgbouncer: localhost/deny-write
 spec:
   revisionHistoryLimit: 10  # removes old replicasets for deployment rollbacks
   strategy:
