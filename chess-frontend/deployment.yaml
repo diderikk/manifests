@@ -16,8 +16,6 @@ spec:
       labels:
         app: chess-frontend
         rel: stable
-      annotations:
-        container.apparmor.security.beta.kubernetes.io/chess-frontend: localhost/deny-write
     spec:
       serviceAccountName: chess-frontend-sa
       containers:

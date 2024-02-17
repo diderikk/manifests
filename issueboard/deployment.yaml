@@ -16,10 +16,6 @@ spec:
       labels:
         app: issueboard
         rel: stable
-      annotations:
-        container.apparmor.security.beta.kubernetes.io/issueboard-init: localhost/deny-write
-        container.apparmor.security.beta.kubernetes.io/issueboard: localhost/deny-write
-        container.apparmor.security.beta.kubernetes.io/issueboard-frontend: localhost/deny-write
     spec:
       serviceAccountName: issueboard-sa
       initContainers:

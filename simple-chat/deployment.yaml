@@ -16,8 +16,6 @@ spec:
       labels:
         app: simple-chat
         rel: stable
-      annotations:
-        container.apparmor.security.beta.kubernetes.io/simple-chat: localhost/deny-write
     spec:
       serviceAccountName: simple-chat-sa
       containers:
