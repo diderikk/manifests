@@ -59,7 +59,7 @@ spec:
             - secretRef:
                 name: issueboard-secrets
         - name: issueboard-frontend
-          image: diderikk/issueboard-frontend:v1.1.0@sha256:8f98e872f84f607830a32105b6d48a707db35cf2e1076bd5882978a707a8b93f
+          image: diderikk/issueboard-frontend:v1.0.1@sha256:b22118e1c2c10d50e97b470296ab16ceff1ffeda161c586f9ccc5c221c5d1694
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
@@ -78,6 +78,3 @@ spec:
               cpu: "20m"
           ports:
             - containerPort: 3000
-          envFrom:
-            - secretRef:
-                name: issueboard-frontend-secrets
