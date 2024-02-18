@@ -59,7 +59,7 @@ spec:
             - secretRef:
                 name: issueboard-secrets
         - name: issueboard-frontend
-          image: diderikk/issueboard-frontend:v1.0.1@sha256:b22118e1c2c10d50e97b470296ab16ceff1ffeda161c586f9ccc5c221c5d1694
+          image: diderikk/issueboard-frontend:v1.1.1@sha256:b22118e1c2c10d50e97b470296ab16ceff1ffeda161c586f9ccc5c221c5d1694
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
