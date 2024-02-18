@@ -18,6 +18,18 @@ spec:
         podSelector:
           matchLabels:
             app: pgbouncer
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: apps
+        podSelector:
+          matchLabels:
+            app: issueboard
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: apps
+        podSelector:
+          matchLabels:
+            app: simple-chat
   egress:
     - to:
       - namespaceSelector:
@@ -26,3 +38,15 @@ spec:
         podSelector:
           matchLabels:
             app: pgbouncer
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: apps
+        podSelector:
+          matchLabels:
+            app: issueboard
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: apps
+        podSelector:
+          matchLabels:
+            app: simple-chat
