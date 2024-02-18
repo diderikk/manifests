@@ -12,6 +12,10 @@ spec:
     - Egress
   ingress:
     - from:
+      - namespaceSelector:
+          matchLabels:
+            # Ingress controller - frontend
+            kubernetes.io/metadata.name: ingress-nginx
       - podSelector:
           matchLabels:
             app: chess-frontend
@@ -20,6 +24,10 @@ spec:
             app: chess
   egress:
     - to:
+      - namespaceSelector:
+          matchLabels:
+            # Ingress controller - frontend
+            kubernetes.io/metadata.name: ingress-nginx
       - podSelector:
           matchLabels:
             app: chess-frontend
