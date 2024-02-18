@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: chess-network-policy
+  namespace: apps
+spec:
+  podSelector:
+    matchLabels:
+      app: chess-frontend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            # Ingress controller - frontend
+            kubernetes.io/metadata.name: ingress-nginx
+      - podSelector:
+          matchLabels:
+            app: chess-frontend
+      - podSelector:
+          matchLabels:
+            app: chess
+  egress:
+    - to:
+      - namespaceSelector:
+          matchLabels:
+            # Ingress controller - frontend
+            kubernetes.io/metadata.name: ingress-nginx
+      - podSelector:
+          matchLabels:
+            app: chess-frontend
+      - podSelector:
+          matchLabels:
+            app: chess
