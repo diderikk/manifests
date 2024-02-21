@@ -10,10 +10,22 @@ spec:
   sessionAffinity: ClientIP
   ports:
     - port: 8080
-      name: backend-svc
       targetPort: 8080
-    - port: 3000
-      name: frontend-svc
-      targetPort: 3000
   selector:
     app: issueboard
+
+---
+
+metadata:
+  name: issueboard-frontend-service
+  namespace: apps
+  labels:
+    app: issueboard-frontend
+spec:
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: issueboard-frontend
