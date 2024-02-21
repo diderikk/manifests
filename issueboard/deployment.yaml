@@ -63,3 +63,51 @@ spec:
           envFrom:
             - secretRef:
                 name: issueboard-secrets
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: issueboard
+  namespace: apps
+  labels:
+    app: issueboard
+    rel: stable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: issueboard
+  template:
+    metadata:
+      labels:
+        app: issueboard
+        rel: stable
+    spec:
+      serviceAccountName: issueboard-sa
+      automountServiceAccountToken: false
+      hostPID: false
+      hostIPC: false
+      hostNetwork: false
+      containers:
+        - name: issueboard-frontend
+          image: diderikk/issueboard-frontend:v1.1.1@sha256:b22118e1c2c10d50e97b470296ab16ceff1ffeda161c586f9ccc5c221c5d1694
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsGroup: 11112
+            runAsUser: 11111
+            capabilities:
+              drop: ['all']
+            allowPrivilegeEscalation: false
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "64Mi"
+              cpu: "20m"
+          ports:
+            - containerPort: 3000
