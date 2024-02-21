@@ -69,20 +69,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: issueboard
+  name: issueboard-frontend
   namespace: apps
   labels:
-    app: issueboard
+    app: issueboard-frontend
     rel: stable
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: issueboard
+      app: issueboard-frontend
   template:
     metadata:
       labels:
-        app: issueboard
+        app: issueboard-frontend
         rel: stable
     spec:
       serviceAccountName: issueboard-sa
