@@ -1,38 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simple-chat
+  name: issueboard
   namespace: apps
   labels:
-    app: simple-chat
+    app: issueboard
     rel: stable
-    need: database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: simple-chat
+      app: issueboard
   template:
     metadata:
       labels:
-        app: simple-chat
+        app: issueboard
         rel: stable
-        need: database
     spec:
-      serviceAccountName: simple-chat-sa
+      serviceAccountName: issueboard-sa
       automountServiceAccountToken: false
       hostPID: false
       hostIPC: false
       hostNetwork: false
       containers:
-        - name: simple-chat
-          image: diderikk/simple-chat:v1.3.2@sha256:6db1c2f3d855c1ff13061b4672306786b2db7c8712b8afba311086ea4c46708b
+        - name: issueboard-frontend
+          image: diderikk/issueboard-frontend:v1.1.1@sha256:b22118e1c2c10d50e97b470296ab16ceff1ffeda161c586f9ccc5c221c5d1694
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
             runAsNonRoot: true
             runAsGroup: 11112
-            runAsUser: 65534
+            runAsUser: 11111
             capabilities:
               drop: ['all']
             allowPrivilegeEscalation: false
@@ -41,17 +39,7 @@ spec:
               memory: "128Mi"
               cpu: "100m"
             requests:
-              memory: "128Mi"
+              memory: "64Mi"
               cpu: "20m"
           ports:
-            - containerPort: 4000
-          envFrom:
-            - secretRef:
-                name: simple-chat-secrets
-          livenessProbe:
-            httpGet:
-              path: /api/hello/live
-              port: 4000
-            initialDelaySeconds: 30
-            periodSeconds: 1800
-            failureThreshold: 2
+            - containerPort: 3000

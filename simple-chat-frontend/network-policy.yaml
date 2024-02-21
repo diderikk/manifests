@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: simple-chat-frontend-network-policy
+  namespace: apps
+spec:
+  podSelector:
+    matchLabels:
+      app: simple-chat-frontend
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: ingress-nginx
+      - podSelector:
+          matchLabels:
+            app: simple-chat
+      - podSelector:
+          matchLabels:
+            app: simple-chat-frontend
+  egress:
+    - to:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: ingress-nginx
+      - podSelector:
+          matchLabels:
+            app: simple-chat
+      - podSelector:
+          matchLabels:
+            app: simple-chat-frontend
