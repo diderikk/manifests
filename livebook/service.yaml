@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: livebook-service
   namespace: apps
-  labels:
-    app: livebook
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP

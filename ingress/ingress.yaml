@@ -103,7 +103,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: issueboard-service
+              name: issueboard-frontend-service
               port:
                 number: 3000
   - host: livebook.diderikk.com

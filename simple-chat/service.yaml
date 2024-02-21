@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: simple-chat-service
   namespace: apps
-  labels:
-    app: simple-chat
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP

@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: chess-frontend-service
   namespace: apps
-  labels:
-    app: chess-frontend
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP

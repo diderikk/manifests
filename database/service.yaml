@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: database-service
   namespace: database
-  labels:
-    app: database
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP

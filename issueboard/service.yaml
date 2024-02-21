@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: issueboard-service
   namespace: apps
-  labels:
-    app: issueboard
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP
@@ -21,8 +19,6 @@ kind: Service
 metadata:
   name: issueboard-frontend-service
   namespace: apps
-  labels:
-    app: issueboard-frontend
 spec:
   type: ClusterIP
   sessionAffinity: ClientIP

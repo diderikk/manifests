@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: portfolio-service
   namespace: apps
-  labels:
-    app: portfolio
 spec:
   type: ClusterIP
   sessionAffinity: None
