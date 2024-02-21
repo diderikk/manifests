@@ -16,6 +16,8 @@ spec:
 
 ---
 
+apiVersion: v1
+kind: Service
 metadata:
   name: issueboard-frontend-service
   namespace: apps
