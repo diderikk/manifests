@@ -26,7 +26,7 @@ spec:
       hostNetwork: false
       containers:
         - name: simple-chat
-          image: diderikk/simple-chat:v1.3.2@sha256:6db1c2f3d855c1ff13061b4672306786b2db7c8712b8afba311086ea4c46708b
+          image: diderikk/simple-chat:v1.3.3@sha256:caf1cb2c135492b4efcba2c99c153c3db06fc2529b4bfca6169e1d824203a9c4
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
