@@ -24,7 +24,7 @@ spec:
       hostNetwork: false
       containers:
         - name: portfolio
-          image: diderikk/portfolio:v1.2.8@sha256:3abbdb0590ac525429f672a159fda7ab9c5498458af60e5485132b2196e4841d
+          image: diderikk/portfolio:v1.3.0@sha256:b32d9bbd59bcc42b71f2df512afb43132e26250dd095978a9bed5bf686ded2b7
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
