@@ -1,0 +1,59 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: database-backup
+  namespace: database
+  labels:
+    app: database-backup
+spec:
+  schedule: "@hourly"
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          containers:
+          - name: database-backup
+            image: postgres:15.1 
+            imagePullPolicy: IfNotPresent
+            # https://www.postgresql.org/docs/current/backup-dump.html
+            command:
+              - /bin/sh
+              - -c
+              - | 
+                pg_dump | gzip > /tmp/backup/db_backup.gz
+            env:
+              - name: PGPASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: database-secrets
+                    key: POSTGRES_PASSWORD
+              - name: PGDATABASE
+                valueFrom:
+                  secretKeyRef:
+                    name: database-secrets
+                    key: POSTGRES_DB
+              - name: PGHOST
+                valueFrom:
+                  secretKeyRef:
+                    name: database-secrets
+                    key: POSTGRES_HOST
+              - name: PGPORT
+                valueFrom:
+                  secretKeyRef:
+                    name: database-secrets
+                    key: POSTGRES_PORT
+              - name: PGUSER
+                valueFrom:
+                  secretKeyRef:
+                    name: database-secrets
+                    key: POSTGRES_USER
+            volumeMounts:
+              - mountPath: /tmp/backup
+                name: backup-volume
+          restartPolicy: OnFailure
+          volumes:
+            - name: backup-volume
+              persistentVolumeClaim:
+                claimName: backup-pvc
