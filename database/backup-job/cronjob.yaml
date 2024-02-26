@@ -6,7 +6,7 @@ metadata:
   labels:
     app: database-backup
 spec:
-  schedule: "* * * * *"
+  schedule: "@hourly"
   concurrencyPolicy: Replace
   jobTemplate:
     spec:
