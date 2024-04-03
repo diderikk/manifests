@@ -9,17 +9,8 @@ spec:
       app: livebook
   policyTypes:
     - Ingress
-    - Egress
   ingress:
     - from:
-      - namespaceSelector:
-          matchLabels:
-            kubernetes.io/metadata.name: ingress-nginx
-      - podSelector:
-          matchLabels:
-            app: livebook
-  egress:
-    - to:
       - namespaceSelector:
           matchLabels:
             kubernetes.io/metadata.name: ingress-nginx
